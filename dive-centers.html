@@ -89,7 +89,7 @@
 
     /* HERO */
     .dc-hero {
-      min-height: 100vh;
+      min-height: 80vh;
       position: relative;
       overflow: hidden;
       display: grid;
@@ -97,7 +97,7 @@
       align-items: center;
       justify-items: center;
       text-align: center;
-      padding: 120px 64px 80px;
+      padding: 100px 64px 60px;
     }
     .dc-hero-video {
       position: absolute;
@@ -167,13 +167,13 @@
     .dc-hero .edot {
       width: 11px;
       height: 11px;
-      background: #22c55e;
-      box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
+      background: #ef4444;
+      box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
       animation: livePulse 2s ease-in-out infinite;
     }
     @keyframes livePulse {
-      0%, 100% { box-shadow: 0 0 0 0 rgba(34,197,94,0.7); }
-      50% { box-shadow: 0 0 0 6px rgba(34,197,94,0); }
+      0%, 100% { box-shadow: 0 0 0 0 rgba(239,68,68,0.7); }
+      50% { box-shadow: 0 0 0 6px rgba(239,68,68,0); }
     }
     @keyframes shimmer {
       0% { transform: translateX(-100%); }
@@ -184,7 +184,7 @@
     .dc-hero h1 {
       font-family: var(--font-h);
       font-weight: 800;
-      font-size: clamp(48px, 6vw, 88px);
+      font-size: clamp(36px, 5vw, 68px);
       letter-spacing: -0.03em;
       color: white;
       line-height: 1.0;
@@ -200,10 +200,10 @@
 
     /* Hero sub */
     .dc-hero-sub {
-      font-size: 18px;
+      font-size: 16px;
       font-weight: 300;
       color: rgba(255,255,255,0.70);
-      max-width: 560px;
+      max-width: 500px;
       line-height: 1.7;
       margin: 24px auto 48px;
       animation: fadeUp .75s .16s ease both;
@@ -229,47 +229,351 @@
       box-shadow: 0 16px 48px rgba(0,0,0,0.25);
     }
 
-    /* Scroll indicator */
-    .scroll-indicator {
-      position: absolute;
-      bottom: 48px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 10;
+    /* Trust bar */
+    .dc-trust {
       display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
-      pointer-events: none;
+      gap: 32px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 32px;
+      animation: fadeUp .75s .32s ease both;
     }
-    .scroll-indicator span {
-      font-size: 12px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.5);
+    .dc-trust-item {
+      font-size: 13px;
+      color: rgba(255,255,255,0.6);
     }
-    .scroll-line {
-      width: 2px;
-      height: 40px;
-      background: linear-gradient(to bottom, rgba(255,255,255,0.95), rgba(255,255,255,0));
-      animation: scrollLine 1.5s ease-in-out infinite;
-      transform-origin: top;
-    }
-    @keyframes scrollLine {
-      0% { transform: translateY(0); opacity: 0.35; }
-      50% { transform: translateY(8px); opacity: 1; }
-      100% { transform: translateY(16px); opacity: 0.2; }
+    .dc-trust-item .check {
+      color: #7C89FF;
+      margin-right: 4px;
     }
 
-    /* Coming soon section */
-    .dc-coming {
-      background: #fff;
-      padding: 80px 64px;
-      text-align: center;
+    /* Operations section */
+    .dc-ops {
+      background: linear-gradient(135deg, #0f1230 0%, #1F2560 100%);
+      padding: 56px 64px 0;
     }
-    .dc-coming p {
+    .dc-ops-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      align-items: center;
+      max-width: 1140px;
+      margin: 0 auto;
+    }
+    .dc-ops-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(124, 137, 255, 0.7);
+      margin-bottom: 16px;
+    }
+    .dc-ops-title {
+      font-family: var(--font-h);
+      font-weight: 800;
+      font-size: clamp(22px, 2.8vw, 36px);
+      color: white;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 32px;
+    }
+    .dc-ops-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .dc-ops-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .dc-ops-check {
+      width: 24px;
+      height: 24px;
+      background: rgba(124, 137, 255, 0.15);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: #7C89FF;
+      transition: transform 0.2s;
+      animation: checkIn 0.5s ease both;
+    }
+    .dc-ops-check:hover {
+      transform: scale(1.1);
+    }
+    .dc-ops-check svg {
+      width: 12px;
+      height: 12px;
+    }
+    .dc-ops-item:nth-child(1) .dc-ops-check { animation-delay: 0s; }
+    .dc-ops-item:nth-child(2) .dc-ops-check { animation-delay: 0.15s; }
+    .dc-ops-item:nth-child(3) .dc-ops-check { animation-delay: 0.3s; }
+    .dc-ops-item:nth-child(4) .dc-ops-check { animation-delay: 0.45s; }
+    .dc-ops-item:nth-child(5) .dc-ops-check { animation-delay: 0.6s; }
+    @keyframes checkIn {
+      from { opacity: 0; transform: scale(0.5); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+    .dc-ops-item span {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.75);
+      line-height: 1.5;
+    }
+    /* Early access card */
+    .dc-ops-card {
+      background: white;
+      border-radius: 24px;
+      padding: 28px;
+      box-shadow: 0 24px 64px rgba(0, 0, 0, 0.3);
+    }
+    .dc-ops-card-title {
+      font-family: var(--font-h);
+      font-size: 18px;
+      font-weight: 800;
+      color: #0f1230;
+      margin-bottom: 6px;
+    }
+    .dc-ops-card-sub {
+      font-size: 13px;
       color: #8890B0;
+      margin-bottom: 28px;
+    }
+    .dc-ops-form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .dc-ops-field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .dc-ops-field label {
+      font-size: 12px;
+      font-weight: 600;
+      color: #1F2560;
+      letter-spacing: 0.04em;
+    }
+    .dc-ops-field input,
+    .dc-ops-field select {
+      padding: 10px 14px;
+      border: 1.5px solid #E2E4F0;
+      border-radius: 12px;
+      font-size: 13px;
+      color: #0f1230;
+      font-family: 'DM Sans', sans-serif;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .dc-ops-field input:focus,
+    .dc-ops-field select:focus {
+      border-color: #4251D4;
+    }
+    .dc-ops-field select {
+      background: white;
+      cursor: pointer;
+      width: 120px;
+      flex-shrink: 0;
+    }
+    .dc-ops-phone-row {
+      display: flex;
+      gap: 8px;
+    }
+    .dc-ops-phone-row input {
+      flex: 1;
+    }
+    .dc-ops-submit {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(135deg, #4251D4, #7C89FF);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-family: var(--font-h);
+      font-weight: 700;
+      font-size: 15px;
+      cursor: pointer;
+      margin-top: 4px;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .dc-ops-submit:hover {
+      opacity: 0.9;
+      transform: translateY(-1px);
+    }
+
+    /* WHY DIVELIFE section */
+    .dc-why {
+      background: #fff;
+      padding: 48px 64px;
+    }
+    .dc-why-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      align-items: start;
+      max-width: 1140px;
+      margin: 0 auto;
+    }
+    .dc-why-left {
+      position: sticky;
+      top: 120px;
+    }
+    .dc-why-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #4251D4;
+      margin-bottom: 16px;
+    }
+    .dc-why-title {
+      font-family: var(--font-h);
+      font-weight: 800;
+      font-size: clamp(22px, 2.8vw, 36px);
+      color: #0f1230;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 24px;
+    }
+    .dc-why-title .grad {
+      background: linear-gradient(135deg, #4251D4, #7C89FF);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .dc-why-sub {
+      font-size: 14px;
+      color: #8890B0;
+      line-height: 1.7;
+    }
+
+    /* Screen mockup */
+    .dc-screen-mockup {
+      margin-top: 32px;
+      width: 100%;
+      max-width: 100%;
+      overflow: hidden;
+      border-radius: 12px;
+      box-shadow: 0 24px 64px rgba(31, 37, 96, 0.15);
+      border: 1px solid #E2E4F0;
+    }
+    .dc-screen-bar {
+      height: 36px;
+      background: #F5F6FF;
+      border-bottom: 1px solid #E2E4F0;
+      display: flex;
+      align-items: center;
+      padding: 0 16px;
+      gap: 6px;
+    }
+    .dc-screen-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    #center-screen-content {
+      height: 220px;
+      overflow: hidden;
+    }
+
+    /* Accordion */
+    .dc-acc-item {
+      border-top: 1px solid #E2E4F0;
+      padding: 14px 0;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+    .dc-acc-item:last-child {
+      border-bottom: 1px solid #E2E4F0;
+    }
+    .dc-acc-bar {
+      display: none;
+      position: absolute;
+      left: -8px;
+      top: 0;
+      width: 3px;
+      height: 100%;
+      background: linear-gradient(180deg, #4251D4, #7C89FF);
+      border-radius: 2px;
+    }
+    .dc-acc-item.active .dc-acc-bar {
+      display: block;
+    }
+    .dc-acc-ghost {
+      display: none;
+      position: absolute;
+      right: -10px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 80px;
+      font-family: var(--font-h);
+      font-weight: 800;
+      color: rgba(66, 81, 212, 0.04);
+      pointer-events: none;
+      z-index: 0;
+      line-height: 1;
+      user-select: none;
+    }
+    .dc-acc-item.active .dc-acc-ghost {
+      display: block;
+    }
+    .dc-acc-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+    .dc-acc-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .dc-acc-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #E2E4F0;
+      flex-shrink: 0;
+      margin-left: 4px;
+      transition: background 0.3s ease;
+    }
+    .dc-acc-item.active .dc-acc-dot {
+      background: #4251D4;
+      animation: breathe 2s ease-in-out infinite;
+    }
+    @keyframes breathe {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(66, 81, 212, 0.4); }
+      50%       { box-shadow: 0 0 0 6px rgba(66, 81, 212, 0); }
+    }
+    .dc-acc-title {
+      font-family: var(--font-h);
       font-size: 16px;
+      font-weight: 700;
+      color: #0f1230;
+      transition: color 0.3s ease;
+    }
+    .dc-acc-item.active .dc-acc-title {
+      color: #4251D4;
+    }
+    .dc-acc-body {
+      font-size: 13px;
+      color: #8890B0;
+      line-height: 1.7;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.3s ease;
+      padding: 0 0 0 26px;
+      position: relative;
+      z-index: 1;
+    }
+    .dc-acc-item.active .dc-acc-body {
+      max-height: 80px;
+      padding: 8px 0 16px 26px;
     }
 
     /* FOOTER */
@@ -328,7 +632,8 @@
     @media (max-width: 960px) {
       .site-nav { padding: 20px 24px; }
       .dc-hero { padding: 110px 24px 64px; }
-      .dc-coming { padding: 60px 24px; }
+      .dc-ops { padding: 48px 24px 0; }
+      .dc-ops-inner { grid-template-columns: 1fr; gap: 40px; }
       footer { flex-direction: column; align-items: flex-start; padding: 28px 24px; }
     }
   </style>
@@ -349,7 +654,7 @@
     <div class="dc-hero-content">
       <div class="eyebrow-pill">
         <span class="edot" aria-hidden="true"></span>
-        <span class="eyebrow-pill__txt">For Dive Centers</span>
+        <span class="eyebrow-pill__txt">Grow Your Dive Center</span>
       </div>
 
       <h1>
@@ -361,11 +666,12 @@
       <p class="dc-hero-sub">Join the world's largest diving community. Manage your center, fill your boats, and grow your business — all in one place.</p>
 
       <a href="#" class="dc-cta">Get Started — It's Free →</a><!-- REPLACE href -->
-    </div>
 
-    <div class="scroll-indicator" aria-hidden="true">
-      <span>SCROLL TO EXPLORE</span>
-      <div class="scroll-line"></div>
+      <div class="dc-trust" aria-label="Key benefits">
+        <span class="dc-trust-item"><span class="check" aria-hidden="true">✓</span>Free to join</span>
+        <span class="dc-trust-item"><span class="check" aria-hidden="true">✓</span>Full control of your center</span>
+        <span class="dc-trust-item"><span class="check" aria-hidden="true">✓</span>Setup in minutes</span>
+      </div>
     </div>
 
     <div style="position:absolute;bottom:-1px;left:0;right:0;line-height:0;z-index:3;">
@@ -375,23 +681,222 @@
     </div>
   </section>
 
-  <!-- PLACEHOLDER SECTION -->
-  <section class="dc-coming reveal">
-    <p>More coming soon.</p>
+  <!-- WHY DIVELIFE -->
+  <section class="dc-why reveal">
+    <div class="dc-why-inner">
+
+      <!-- Left: sticky -->
+      <div class="dc-why-left">
+        <p class="dc-why-label">Why Divelife</p>
+        <h2 class="dc-why-title">Everything your center<br />needs to <span class="grad">grow.</span></h2>
+        <p class="dc-why-sub">Built by people who dive. The platform built for how dive centers actually work.</p>
+        <div class="dc-screen-mockup" aria-label="Feature preview">
+          <div class="dc-screen-bar" aria-hidden="true">
+            <span class="dc-screen-dot" style="background:#ff5f57"></span>
+            <span class="dc-screen-dot" style="background:#febc2e"></span>
+            <span class="dc-screen-dot" style="background:#28c840"></span>
+          </div>
+          <div id="center-screen-content">
+            <img src="AP1.png" style="width:100%;height:100%;object-fit:contain;object-position:center;display:block;background:#F8F9FF;">
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: accordion -->
+      <div class="dc-acc-list">
+
+        <div class="dc-acc-item active" role="button" tabindex="0" aria-expanded="true">
+          <div class="dc-acc-bar" aria-hidden="true"></div>
+          <span class="dc-acc-ghost" aria-hidden="true">01</span>
+          <div class="dc-acc-header">
+            <div class="dc-acc-left">
+              <span class="dc-acc-dot" aria-hidden="true"></span>
+              <span class="dc-acc-title">Reach thousands of divers</span>
+            </div>
+          </div>
+          <div class="dc-acc-body">Divers in your area search Divelife daily. Get discovered without spending a cent on ads.</div>
+        </div>
+
+        <div class="dc-acc-item" role="button" tabindex="0" aria-expanded="false">
+          <div class="dc-acc-bar" aria-hidden="true"></div>
+          <span class="dc-acc-ghost" aria-hidden="true">02</span>
+          <div class="dc-acc-header">
+            <div class="dc-acc-left">
+              <span class="dc-acc-dot" aria-hidden="true"></span>
+              <span class="dc-acc-title">Instant bookings</span>
+            </div>
+          </div>
+          <div class="dc-acc-body">Divers book in under a minute. You get notified instantly. No emails, no missed dives.</div>
+        </div>
+
+        <div class="dc-acc-item" role="button" tabindex="0" aria-expanded="false">
+          <div class="dc-acc-bar" aria-hidden="true"></div>
+          <span class="dc-acc-ghost" aria-hidden="true">03</span>
+          <div class="dc-acc-header">
+            <div class="dc-acc-left">
+              <span class="dc-acc-dot" aria-hidden="true"></span>
+              <span class="dc-acc-title">Smart scheduling</span>
+            </div>
+          </div>
+          <div class="dc-acc-body">Real-time view of every boat, group and timeslot. Spot gaps and fill them fast.</div>
+        </div>
+
+        <div class="dc-acc-item" role="button" tabindex="0" aria-expanded="false">
+          <div class="dc-acc-bar" aria-hidden="true"></div>
+          <span class="dc-acc-ghost" aria-hidden="true">04</span>
+          <div class="dc-acc-header">
+            <div class="dc-acc-left">
+              <span class="dc-acc-dot" aria-hidden="true"></span>
+              <span class="dc-acc-title">Real community. Real reviews.</span>
+            </div>
+          </div>
+          <div class="dc-acc-body">Build your reputation through verified diver reviews. The trust that fills your boats every week.</div>
+        </div>
+
+        <div class="dc-acc-item" role="button" tabindex="0" aria-expanded="false">
+          <div class="dc-acc-bar" aria-hidden="true"></div>
+          <span class="dc-acc-ghost" aria-hidden="true">05</span>
+          <div class="dc-acc-header">
+            <div class="dc-acc-left">
+              <span class="dc-acc-dot" aria-hidden="true"></span>
+              <span class="dc-acc-title">Fleet &amp; instructor management</span>
+            </div>
+          </div>
+          <div class="dc-acc-body">Assign instructors, manage boats, track certifications. Everything your ops team needs in one screen.</div>
+        </div>
+
+        <div class="dc-acc-item" role="button" tabindex="0" aria-expanded="false">
+          <div class="dc-acc-bar" aria-hidden="true"></div>
+          <span class="dc-acc-ghost" aria-hidden="true">06</span>
+          <div class="dc-acc-header">
+            <div class="dc-acc-left">
+              <span class="dc-acc-dot" aria-hidden="true"></span>
+              <span class="dc-acc-title">Payments handled</span>
+            </div>
+          </div>
+          <div class="dc-acc-body">Stripe Connect built in. You get paid automatically. We charge 13% per booking — only when you earn.</div>
+        </div>
+
+      </div>
+    </div>
   </section>
 
-  <!-- FOOTER WAVE -->
-  <div style="overflow:hidden;line-height:0;background:#fff;">
-    <svg viewBox="0 0 1440 120" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="width:100%;height:120px;display:block;">
-      <defs>
-        <linearGradient id="waveGrad2" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" style="stop-color:#1F2560"/>
-          <stop offset="50%" style="stop-color:#4251D4"/>
-          <stop offset="100%" style="stop-color:#7C89FF"/>
-        </linearGradient>
-      </defs>
-      <path d="M0,40 C180,90 360,10 540,50 C720,90 900,20 1080,60 C1260,100 1380,30 1440,50 L1440,120 L0,120 Z" fill="url(#waveGrad2)"/>
-      <path d="M0,60 C200,20 400,80 600,50 C800,20 1000,70 1200,45 C1350,25 1420,55 1440,60 L1440,120 L0,120 Z" fill="rgba(255,255,255,0.08)"/>
+  <div style="background:#ffffff;margin-bottom:-1px;line-height:0;">
+    <svg viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;height:80px;">
+      <path d="M0,0 C360,80 1080,0 1440,60 L1440,80 L0,80 Z" fill="#0f1230"/>
+    </svg>
+  </div>
+
+  <!-- OPERATIONS SECTION -->
+  <section class="dc-ops reveal">
+    <div class="dc-ops-inner">
+
+      <!-- Left column -->
+      <div class="dc-ops-left" style="align-self:start;padding-top:0;">
+        <p class="dc-ops-label">Operations</p>
+        <h2 class="dc-ops-title">A full OS for your dive center.</h2>
+        <ul class="dc-ops-list reveal" role="list">
+          <li class="dc-ops-item">
+            <span class="dc-ops-check" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </span>
+            <span>Day Board — all boats, groups &amp; slots at a glance</span>
+          </li>
+          <li class="dc-ops-item">
+            <span class="dc-ops-check" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </span>
+            <span>Assign instructors with one click</span>
+          </li>
+          <li class="dc-ops-item">
+            <span class="dc-ops-check" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </span>
+            <span>Manage capacity and avoid overbooking</span>
+          </li>
+          <li class="dc-ops-item">
+            <span class="dc-ops-check" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </span>
+            <span>Track certifications and insurance per diver</span>
+          </li>
+          <li class="dc-ops-item">
+            <span class="dc-ops-check" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </span>
+            <span>Full payment history and pending alerts</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Right column: early access card -->
+      <div class="dc-ops-card">
+        <p class="dc-ops-card-title">Want to try Divelife?</p>
+        <p class="dc-ops-card-sub">Get early access. We'll set everything up for you.</p>
+        <form class="dc-ops-form" onsubmit="return false;">
+          <div class="dc-ops-field">
+            <label for="ops-name">FULL NAME</label>
+            <input id="ops-name" type="text" placeholder="John Smith" autocomplete="name">
+          </div>
+          <div class="dc-ops-field">
+            <label for="ops-center">DIVE CENTER NAME</label>
+            <input id="ops-center" type="text" placeholder="Ocean Explorers" autocomplete="organization">
+          </div>
+          <div class="dc-ops-field">
+            <label for="ops-country">COUNTRY</label>
+            <input id="ops-country" type="text" placeholder="Thailand" autocomplete="country-name">
+          </div>
+          <div class="dc-ops-field">
+            <label for="ops-phone">PHONE</label>
+            <div class="dc-ops-phone-row">
+              <select id="ops-prefix" aria-label="Country code">
+                <option value="+1">🇺🇸 +1</option>
+                <option value="+1ca">🇨🇦 +1</option>
+                <option value="+34">🇪🇸 +34</option>
+                <option value="+44">🇬🇧 +44</option>
+                <option value="+33">🇫🇷 +33</option>
+                <option value="+49">🇩🇪 +49</option>
+                <option value="+39">🇮🇹 +39</option>
+                <option value="+31">🇳🇱 +31</option>
+                <option value="+61">🇦🇺 +61</option>
+                <option value="+64">🇳🇿 +64</option>
+                <option value="+66">🇹🇭 +66</option>
+                <option value="+62">🇮🇩 +62</option>
+                <option value="+60">🇲🇾 +60</option>
+                <option value="+65">🇸🇬 +65</option>
+                <option value="+63">🇵🇭 +63</option>
+                <option value="+81">🇯🇵 +81</option>
+                <option value="+82">🇰🇷 +82</option>
+                <option value="+86">🇨🇳 +86</option>
+                <option value="+91">🇮🇳 +91</option>
+                <option value="+55">🇧🇷 +55</option>
+                <option value="+52">🇲🇽 +52</option>
+                <option value="+54">🇦🇷 +54</option>
+                <option value="+56">🇨🇱 +56</option>
+                <option value="+57">🇨🇴 +57</option>
+                <option value="+20">🇪🇬 +20</option>
+                <option value="+27">🇿🇦 +27</option>
+                <option value="+212">🇲🇦 +212</option>
+                <option value="+971">🇦🇪 +971</option>
+                <option value="+972">🇮🇱 +972</option>
+                <option value="+90">🇹🇷 +90</option>
+              </select>
+              <input id="ops-phone" type="tel" placeholder="234 567 890" autocomplete="tel">
+            </div>
+          </div>
+          <div class="dc-ops-field">
+            <label for="ops-email">EMAIL</label>
+            <input id="ops-email" type="email" placeholder="you@divecenter.com" autocomplete="email">
+          </div>
+          <button type="submit" class="dc-ops-submit">Request Early Access →</button>
+        </form>
+      </div>
+
+    </div>
+  </section>
+  <div style="background:#0f1230;margin-bottom:-1px;line-height:0;">
+    <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;height:60px;">
+      <path d="M0,0 C480,60 960,60 1440,0 L1440,60 L0,60 Z" fill="#ffffff"/>
     </svg>
   </div>
 
@@ -436,6 +941,26 @@
     }
     window.addEventListener('scroll', updateSiteNavScroll, { passive: true });
     updateSiteNavScroll();
+
+    /* Why accordion */
+    (function () {
+      const items = document.querySelectorAll('.dc-acc-item');
+      if (!items.length) return;
+      function activate(item) {
+        items.forEach(i => {
+          i.classList.remove('active');
+          i.setAttribute('aria-expanded', 'false');
+        });
+        item.classList.add('active');
+        item.setAttribute('aria-expanded', 'true');
+      }
+      items.forEach(item => {
+        item.addEventListener('click', () => activate(item));
+        item.addEventListener('keydown', e => {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activate(item); }
+        });
+      });
+    })();
   </script>
 </body>
 </html>
