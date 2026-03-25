@@ -710,6 +710,154 @@
       .dc-ops-inner { grid-template-columns: 1fr; gap: 40px; }
       footer { flex-direction: column; align-items: flex-start; padding: 28px 24px; }
     }
+
+    .btn-nav-short { display: none; }
+
+    @media (max-width: 768px) {
+      /* Nav button */
+      .btn-nav {
+        font-size: 12px;
+        padding: 8px 16px;
+      }
+      .btn-nav-full  { display: none; }
+      .btn-nav-short { display: inline; }
+
+      /* Hero spacing */
+      .dc-hero {
+        min-height: 100svh;
+        padding: 120px 24px 60px;
+        text-align: center;
+      }
+      .dc-hero-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 12px;
+      }
+      .dc-hero .eyebrow-pill {
+        margin-bottom: 4px;
+      }
+      .dc-hero h1 {
+        margin-top: 0;
+        margin-bottom: 4px;
+      }
+      .dc-hero-sub {
+        margin-top: 0;
+        margin-bottom: 8px;
+      }
+      .dc-cta {
+        margin-top: 0;
+        margin-bottom: 8px;
+      }
+      .dc-trust {
+        margin-top: 0;
+        gap: 6px;
+      }
+
+      /* Hero title */
+      .dc-hero h1 {
+        font-size: 2.2rem;
+        text-align: center;
+        padding: 0 20px;
+      }
+
+      /* Hero subtitle */
+      .dc-hero-sub {
+        font-size: 1rem;
+        text-align: center;
+        padding: 0 24px;
+      }
+
+      /* CTA button */
+      .dc-cta {
+        width: 85%;
+        margin: 0 auto;
+        justify-content: center;
+      }
+
+      /* Trust badges */
+      .dc-trust {
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+      }
+      .dc-trust-item {
+        text-align: center;
+      }
+
+      /* ── OPERATIONS / FORM ── */
+      .dc-ops {
+        padding-top: 60px;
+      }
+      .dc-ops-inner {
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+      }
+      .dc-ops-card {
+        width: 90%;
+        max-width: 420px;
+        margin: 0 auto;
+        padding: 24px;
+        animation: none;
+      }
+      .dc-ops-field label {
+        font-size: 11px;
+      }
+      .dc-ops-field input,
+      .dc-ops-field select {
+        font-size: 14px;
+      }
+      .dc-ops-field-row {
+        flex-direction: column;
+        gap: 10px;
+      }
+      .dc-ops-phone-row {
+        width: 100%;
+        overflow: hidden;
+      }
+      .dc-ops-phone-row select {
+        width: 90px;
+        flex-shrink: 1;
+        min-width: 0;
+      }
+      .dc-ops-phone-row input {
+        flex: 1;
+        flex-shrink: 1;
+        min-width: 0;
+      }
+      .dc-ops-submit {
+        width: 100%;
+      }
+
+      /* ── WHY DIVELIFE ── */
+      .dc-why {
+        padding: 40px 0;
+      }
+      .dc-why-inner {
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+      }
+      .dc-why-left {
+        position: static;
+        top: auto;
+        padding: 0 20px;
+        text-align: left;
+      }
+      .dc-why-title {
+        font-size: 2rem;
+      }
+      .dc-screen-mockup {
+        display: none;
+      }
+      .dc-acc-list {
+        width: 100%;
+        padding: 0 20px;
+        padding-top: 0;
+      }
+    }
   </style>
 </head>
 <body>
@@ -717,7 +865,7 @@
   <!-- NAV -->
   <nav class="site-nav" aria-label="Main">
     <a class="logo" href="index.html"><img src="LOGO_DIVELIFE_TRANS-01.png" alt="Divelife" /></a>
-    <a href="index.html" class="btn-nav">← Back to Divelife</a>
+    <a href="index.html" class="btn-nav"><span class="btn-nav-full">← Back to Divelife</span><span class="btn-nav-short">← Back</span></a>
   </nav>
 
   <!-- HERO -->

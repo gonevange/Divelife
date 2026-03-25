@@ -495,6 +495,14 @@
       object-position: center;
       transition: opacity 0.3s ease;
     }
+    .feat-swipe-hint { display: none; }
+    .wyg-bento-label--mob { display: none; }
+    .wyg-feat-rule { display: none; }
+    @keyframes rulePulse {
+      from { transform: translateX(0);   opacity: 0.6; }
+      to   { transform: translateX(60px); opacity: 1; }
+    }
+
     .wyg-bento-label {
       font-size: 11px;
       font-weight: 600;
@@ -709,6 +717,24 @@
       -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     }
     .final p { font-size: 17px; color: var(--muted); max-width: 380px; margin: 0 auto 48px; line-height: 1.7; position: relative; }
+    .typewriter {
+      overflow: hidden;
+      border-right: 2px solid #4251D4;
+      white-space: nowrap;
+      width: 0;
+      margin-left: auto;
+      margin-right: auto;
+      animation: typing 6s steps(22) 1s infinite alternate,
+                 blink 0.7s step-end infinite;
+    }
+    @keyframes typing {
+      0%        { width: 0; }
+      50%, 100% { width: 100%; }
+    }
+    @keyframes blink {
+      0%, 100% { border-color: #4251D4; }
+      50%      { border-color: transparent; }
+    }
     .final-btns { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; position: relative; }
 
     /* FOOTER WAVE */
@@ -812,6 +838,188 @@
         padding: 28px 24px;
       }
     }
+
+    @media (max-width: 768px) {
+      /* Nav */
+      .btn-nav {
+        font-size: 13px;
+        padding: 6px 14px;
+      }
+
+      /* Hero layout & spacing */
+      .hero {
+        grid-template-columns: 1fr;
+        padding: 60px 24px 40px;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* Hero text container */
+      .hero-text {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+        padding-left: 0;
+        padding-right: 0;
+        text-align: center;
+        width: 100%;
+      }
+
+      /* Badge */
+      .hero .eyebrow-pill {
+        margin: 0 auto;
+        font-size: 11px;
+      }
+
+      /* Title */
+      .hero h1 {
+        font-size: 2.8rem;
+        margin: 0;
+      }
+
+      /* Subtitle */
+      .hero-sub {
+        font-size: 1rem;
+        padding: 0;
+        margin: 0;
+        text-align: center;
+      }
+
+      /* App Store / Google Play buttons */
+      .hero-actions {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+      }
+      .hero-actions .btn-dive,
+      .hero-actions .btn-play {
+        width: 100%;
+        max-width: 280px;
+        margin: 0 auto;
+        justify-content: center;
+      }
+
+      /* Scroll indicator visible on mobile */
+      .scroll-indicator {
+        display: flex;
+        bottom: 40px;
+      }
+
+      /* Hide floating phones */
+      .hero-phones {
+        display: none;
+      }
+
+      /* Hero: remove bottom gap */
+      .hero {
+        margin-bottom: 0;
+        padding-bottom: 0;
+      }
+
+      /* ── FEATURES SECTION ── */
+      /* Order: mobile label(1) → iPhone(2) → col-left/title+cards(3) */
+      .wyg-section {
+        padding-top: 30px;
+        padding-bottom: 30px;
+        padding-left: 0;
+        padding-right: 0;
+      }
+      .wyg-layout {
+        gap: 0;
+      }
+      .wyg-feat-rule {
+        display: block;
+        order: 1;
+        width: 120px;
+        height: 2px;
+        background: #4251D4;
+        border-radius: 2px;
+        margin: 12px auto 0;
+        margin-bottom: 20px;
+        animation: rulePulse 2.5s ease-in-out infinite alternate;
+      }
+      .wyg-bento-label--mob {
+        display: block;
+        order: 1;
+        text-align: center;
+        padding: 0 20px;
+        margin-bottom: 8px;
+      }
+      .wyg-col-left .wyg-bento-label {
+        display: none;
+      }
+      .wyg-sticky-col {
+        display: block;
+        order: 2;
+        text-align: center;
+        margin-top: 16px;
+        margin-bottom: 20px;
+      }
+      .wyg-phone-shell {
+        width: 146px;
+        margin: 0 auto;
+        opacity: 0.85;
+        filter: none;
+        align-self: unset;
+        position: static;
+      }
+      .wyg-col-left {
+        order: 3;
+      }
+      .wyg-title {
+        font-size: 1.8rem;
+        text-align: left;
+        padding: 0 20px;
+        max-width: 100% !important;
+        white-space: normal !important;
+        word-break: normal !important;
+        margin-top: 24px;
+        margin-bottom: 20px;
+      }
+
+      /* Cards: horizontal carousel */
+      .feat-bento {
+        display: flex;
+        flex-direction: row;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        gap: 12px;
+        padding: 4px 20px 12px;
+        grid-template-columns: unset;
+      }
+      .feat-bento::-webkit-scrollbar {
+        display: none;
+      }
+      .feat-bento-card {
+        min-width: 75vw;
+        scroll-snap-align: start;
+        flex-shrink: 0;
+        padding: 24px;
+        opacity: 1 !important;
+        width: auto;
+      }
+
+      /* Swipe hint */
+      @keyframes swipePulse {
+        0%, 100% { opacity: 0.3; transform: translateX(0); }
+        50%       { opacity: 0.7; transform: translateX(4px); }
+      }
+      .feat-swipe-hint {
+        display: block;
+        text-align: center;
+        font-size: 11px;
+        color: #9ca3af;
+        margin-top: 4px;
+        padding-bottom: 8px;
+        opacity: 0.5;
+        animation: swipePulse 2s ease-in-out infinite;
+      }
+    }
   </style>
 </head>
 <body>
@@ -892,6 +1100,8 @@
   <!-- WHAT YOU GET -->
   <section id="features" class="wyg-section reveal">
     <div class="wyg-layout">
+      <div class="wyg-feat-rule" aria-hidden="true"></div>
+      <p class="wyg-bento-label wyg-bento-label--mob" aria-hidden="true">The strava for divers</p>
       <div class="wyg-col-left">
         <p class="wyg-bento-label">The strava for divers</p>
         <h2 class="wyg-title">
@@ -954,6 +1164,7 @@
             </div>
           </div>
         </div>
+        <p class="feat-swipe-hint" aria-hidden="true">← swipe →</p>
       </div>
       <div class="wyg-sticky-col">
         <div class="wyg-phone-shell">
@@ -985,7 +1196,7 @@
   <!-- FINAL CTA -->
   <section class="final">
     <h2 class="reveal">The ocean<br>is <em>calling.</em></h2>
-    <p class="reveal">See you uderwater...</p>
+    <p class="typewriter reveal">See you underwater...</p>
     <div class="final-btns reveal">
       <a href="#" class="btn-store"><!-- REPLACE href -->
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
