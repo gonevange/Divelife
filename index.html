@@ -724,7 +724,7 @@
       width: 0;
       margin-left: auto;
       margin-right: auto;
-      animation: typing 6s steps(22) 1s infinite alternate,
+      animation: typing 12s steps(22) 1s infinite alternate,
                  blink 0.7s step-end infinite;
     }
     @keyframes typing {
@@ -800,6 +800,11 @@
     footer .soc:hover {
       color: #4251D4;
       transform: translateY(-2px);
+    }
+
+    @media (min-width: 769px) {
+      html { font-size: 90%; }
+      .hero { padding-top: 80px; padding-bottom: 40px; }
     }
 
     /* ANIMATIONS */
