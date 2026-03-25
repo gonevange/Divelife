@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Divelife for Dive Centers</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --penn:       #1F2560;
+      --byzantine:  #4251D4;
+      --indigo:     #7C89FF;
+      --ink:        #0f1230;
+      --white:      #FFFFFF;
+      --off-white:  #F5F6FF;
+      --muted:      #8890B0;
+      --border:     #E2E4F0;
+      --grad-blue:  linear-gradient(135deg, #4251D4 0%, #7C89FF 100%);
+      --font-h: 'Bricolage Grotesque', sans-serif;
+      --font-b: 'DM Sans', sans-serif;
+      --r-sm: 14px; --r-md: 22px; --r-lg: 36px; --r-pill: 999px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-b); background: var(--white); color: var(--penn); overflow-x: hidden; }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+
+    /* NAV */
+    .site-nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 48px;
+      background: rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      transition: background 0.35s ease, border-color 0.35s ease;
+    }
+    .site-nav.scrolled {
+      background: rgba(255, 255, 255, 0.95);
+      border-bottom: 1px solid #E2E4F0;
+    }
+    .site-nav .logo img {
+      height: 36px;
+      width: auto;
+      display: block;
+      filter: brightness(0) invert(1);
+      transition: filter 0.35s ease;
+    }
+    .site-nav.scrolled .logo img {
+      filter: none;
+    }
+    .btn-nav {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      border: 1.5px solid rgba(255, 255, 255, 0.35);
+      color: #fff;
+      padding: 12px 28px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 600;
+      font-family: var(--font-h);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease, transform 0.2s ease;
+    }
+    .site-nav:not(.scrolled) .btn-nav:hover {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: rgba(255, 255, 255, 0.6);
+      transform: translateY(-1px);
+    }
+    .site-nav.scrolled .btn-nav {
+      background: #1F2560;
+      color: #fff;
+      border-color: transparent;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+    }
+    .site-nav.scrolled .btn-nav:hover {
+      background: #2d3778;
+      transform: translateY(-1px);
+    }
+
+    /* HERO */
+    .dc-hero {
+      min-height: 100vh;
+      position: relative;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr;
+      align-items: center;
+      justify-items: center;
+      text-align: center;
+      padding: 120px 64px 80px;
+    }
+    .dc-hero-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .dc-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(10, 14, 50, 0.62);
+      z-index: 1;
+      pointer-events: none;
+    }
+    .dc-hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Eyebrow pill (same as index) */
+    .eyebrow-pill {
+      display: inline-flex; align-items: center; gap: 11px;
+      width: fit-content;
+      text-transform: uppercase;
+      margin-bottom: 36px;
+      animation: fadeUp .7s ease both;
+    }
+    .edot { border-radius: 50%; flex-shrink: 0; }
+    .dc-hero .eyebrow-pill {
+      padding: 7px 14px;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.25);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      color: #fff;
+      font-weight: 600;
+      font-family: var(--font-h);
+      position: relative;
+      overflow: hidden;
+    }
+    .dc-hero .eyebrow-pill::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.15) 50%, transparent 100%);
+      border-radius: 999px;
+      animation: shimmer 3s ease-in-out infinite 1s;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .dc-hero .eyebrow-pill .edot,
+    .dc-hero .eyebrow-pill .eyebrow-pill__txt {
+      position: relative;
+      z-index: 1;
+    }
+    .dc-hero .edot {
+      width: 11px;
+      height: 11px;
+      background: #22c55e;
+      box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
+      animation: livePulse 2s ease-in-out infinite;
+    }
+    @keyframes livePulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(34,197,94,0.7); }
+      50% { box-shadow: 0 0 0 6px rgba(34,197,94,0); }
+    }
+    @keyframes shimmer {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+
+    /* Hero heading */
+    .dc-hero h1 {
+      font-family: var(--font-h);
+      font-weight: 800;
+      font-size: clamp(48px, 6vw, 88px);
+      letter-spacing: -0.03em;
+      color: white;
+      line-height: 1.0;
+      margin-bottom: 0;
+      animation: fadeUp .75s .08s ease both;
+    }
+    .dc-hero h1 .grad {
+      background: linear-gradient(135deg, #7C89FF, #a8f0e0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Hero sub */
+    .dc-hero-sub {
+      font-size: 18px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.70);
+      max-width: 560px;
+      line-height: 1.7;
+      margin: 24px auto 48px;
+      animation: fadeUp .75s .16s ease both;
+    }
+
+    /* CTA button */
+    .dc-cta {
+      display: inline-flex;
+      align-items: center;
+      background: white;
+      color: #1F2560;
+      padding: 16px 40px;
+      border-radius: 999px;
+      font-family: var(--font-h);
+      font-weight: 700;
+      font-size: 16px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      animation: fadeUp .75s .24s ease both;
+    }
+    .dc-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.25);
+    }
+
+    /* Scroll indicator */
+    .scroll-indicator {
+      position: absolute;
+      bottom: 48px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      pointer-events: none;
+    }
+    .scroll-indicator span {
+      font-size: 12px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+    }
+    .scroll-line {
+      width: 2px;
+      height: 40px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.95), rgba(255,255,255,0));
+      animation: scrollLine 1.5s ease-in-out infinite;
+      transform-origin: top;
+    }
+    @keyframes scrollLine {
+      0% { transform: translateY(0); opacity: 0.35; }
+      50% { transform: translateY(8px); opacity: 1; }
+      100% { transform: translateY(16px); opacity: 0.2; }
+    }
+
+    /* Coming soon section */
+    .dc-coming {
+      background: #fff;
+      padding: 80px 64px;
+      text-align: center;
+    }
+    .dc-coming p {
+      color: #8890B0;
+      font-size: 16px;
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--white);
+      border-top: 1px solid var(--border);
+      padding: 28px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px 32px;
+    }
+    footer .foot-logo img {
+      height: 28px;
+      filter: none;
+      display: block;
+    }
+    .foot-copy {
+      margin: 0;
+      font-size: 12px;
+      color: #8890B0;
+    }
+    .foot-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      font-size: 13px;
+    }
+    .foot-links a {
+      color: #8890B0;
+      transition: color 0.2s ease;
+    }
+    .foot-links a:hover { color: #1F2560; }
+    footer .socials {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    footer .soc {
+      width: 34px; height: 34px;
+      border-radius: 50%; border: none;
+      background: transparent; color: #8890B0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px;
+      transition: color 0.2s ease, transform 0.2s ease;
+    }
+    footer .soc:hover { color: #4251D4; transform: translateY(-2px); }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp { from{opacity:0;transform:translateY(28px)} to{opacity:1;transform:translateY(0)} }
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .65s ease, transform .65s ease; }
+    .reveal.in { opacity: 1; transform: translateY(0); }
+
+    /* RESPONSIVE */
+    @media (max-width: 960px) {
+      .site-nav { padding: 20px 24px; }
+      .dc-hero { padding: 110px 24px 64px; }
+      .dc-coming { padding: 60px 24px; }
+      footer { flex-direction: column; align-items: flex-start; padding: 28px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="site-nav" aria-label="Main">
+    <a class="logo" href="index.html"><img src="LOGO_DIVELIFE_TRANS-01.png" alt="Divelife" /></a>
+    <a href="index.html" class="btn-nav">← Back to Divelife</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="dc-hero">
+    <video class="dc-hero-video" src="DL_v_2.mp4" autoplay muted loop playsinline></video>
+    <div class="dc-hero-overlay" aria-hidden="true"></div>
+
+    <div class="dc-hero-content">
+      <div class="eyebrow-pill">
+        <span class="edot" aria-hidden="true"></span>
+        <span class="eyebrow-pill__txt">For Dive Centers</span>
+      </div>
+
+      <h1>
+        More bookings.<br />
+        Less chaos.<br />
+        <span class="grad">Smarter ops.</span>
+      </h1>
+
+      <p class="dc-hero-sub">Join the world's largest diving community. Manage your center, fill your boats, and grow your business — all in one place.</p>
+
+      <a href="#" class="dc-cta">Get Started — It's Free →</a><!-- REPLACE href -->
+    </div>
+
+    <div class="scroll-indicator" aria-hidden="true">
+      <span>SCROLL TO EXPLORE</span>
+      <div class="scroll-line"></div>
+    </div>
+
+    <div style="position:absolute;bottom:-1px;left:0;right:0;line-height:0;z-index:3;">
+      <svg viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="width:100%;height:80px;display:block;">
+        <path d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z" fill="white"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- PLACEHOLDER SECTION -->
+  <section class="dc-coming reveal">
+    <p>More coming soon.</p>
+  </section>
+
+  <!-- FOOTER WAVE -->
+  <div style="overflow:hidden;line-height:0;background:#fff;">
+    <svg viewBox="0 0 1440 120" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="width:100%;height:120px;display:block;">
+      <defs>
+        <linearGradient id="waveGrad2" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" style="stop-color:#1F2560"/>
+          <stop offset="50%" style="stop-color:#4251D4"/>
+          <stop offset="100%" style="stop-color:#7C89FF"/>
+        </linearGradient>
+      </defs>
+      <path d="M0,40 C180,90 360,10 540,50 C720,90 900,20 1080,60 C1260,100 1380,30 1440,50 L1440,120 L0,120 Z" fill="url(#waveGrad2)"/>
+      <path d="M0,60 C200,20 400,80 600,50 C800,20 1000,70 1200,45 C1350,25 1420,55 1440,60 L1440,120 L0,120 Z" fill="rgba(255,255,255,0.08)"/>
+    </svg>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <a class="logo foot-logo" href="index.html"><img src="LOGO_DIVELIFE_TRANS-01.png" alt="Divelife" /></a>
+    <p class="foot-copy">© 2025 Divelife</p>
+    <div class="foot-links" role="navigation" aria-label="Legal">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Use</a>
+      <a href="#">Contact</a>
+    </div>
+    <div class="socials">
+      <a href="#" class="soc" aria-label="Instagram"><!-- REPLACE href -->
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+      </a>
+      <a href="#" class="soc" aria-label="TikTok"><!-- REPLACE href -->
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.77a4.85 4.85 0 01-1.01-.08z"/></svg>
+      </a>
+      <a href="#" class="soc" aria-label="YouTube"><!-- REPLACE href -->
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 00-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 00.527 6.205a31.247 31.247 0 00-.522 5.805 31.247 31.247 0 00.522 5.783 3.007 3.007 0 002.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 002.088-2.088 31.247 31.247 0 00.5-5.783 31.247 31.247 0 00-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
+      </a>
+    </div>
+  </footer>
+
+  <script>
+    const els = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('in'), i * 70);
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    els.forEach(el => io.observe(el));
+
+    const siteNav = document.querySelector('.site-nav');
+    function updateSiteNavScroll() {
+      if (!siteNav) return;
+      siteNav.classList.toggle('scrolled', window.scrollY > 80);
+    }
+    window.addEventListener('scroll', updateSiteNavScroll, { passive: true });
+    updateSiteNavScroll();
+  </script>
+</body>
+</html>
