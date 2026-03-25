@@ -235,13 +235,20 @@
       gap: 32px;
       justify-content: center;
       flex-wrap: wrap;
-      margin-top: 32px;
-      animation: fadeUp .75s .32s ease both;
+      margin-top: 20px;
+    }
+    @keyframes trustIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
     .dc-trust-item {
       font-size: 13px;
       color: rgba(255,255,255,0.6);
+      animation: trustIn 0.5s ease-out both;
     }
+    .dc-trust-item:nth-child(1) { animation-delay: 0.3s; }
+    .dc-trust-item:nth-child(2) { animation-delay: 0.5s; }
+    .dc-trust-item:nth-child(3) { animation-delay: 0.7s; }
     .dc-trust-item .check {
       color: #7C89FF;
       margin-right: 4px;
@@ -250,7 +257,8 @@
     /* Operations section */
     .dc-ops {
       background: linear-gradient(135deg, #0f1230 0%, #1F2560 100%);
-      padding: 56px 64px 0;
+      padding: 120px 64px 140px;
+      position: relative;
     }
     .dc-ops-inner {
       display: grid;
@@ -259,6 +267,26 @@
       align-items: center;
       max-width: 1140px;
       margin: 0 auto;
+    }
+    .dc-ops-dots {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    .dc-ops-dots span {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #4251D4;
+      opacity: 0.3;
+      animation: dotPulse 1.5s ease-in-out infinite both;
+    }
+    .dc-ops-dots span:nth-child(2) { animation-delay: 0.2s; }
+    .dc-ops-dots span:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes dotPulse {
+      0%, 60%, 100% { opacity: 0.3; transform: scale(1); }
+      30%            { opacity: 1;   transform: scale(1.3); }
     }
     .dc-ops-label {
       font-size: 11px;
@@ -282,11 +310,21 @@
       flex-direction: column;
       gap: 10px;
     }
+    @keyframes slideInLeft {
+      from { opacity: 0; transform: translateX(-15px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
     .dc-ops-item {
       display: flex;
       align-items: center;
       gap: 12px;
+      animation: slideInLeft 0.5s ease-out both;
     }
+    .dc-ops-item:nth-child(1) { animation-delay: 0.2s; }
+    .dc-ops-item:nth-child(2) { animation-delay: 0.35s; }
+    .dc-ops-item:nth-child(3) { animation-delay: 0.5s; }
+    .dc-ops-item:nth-child(4) { animation-delay: 0.65s; }
+    .dc-ops-item:nth-child(5) { animation-delay: 0.8s; }
     .dc-ops-check {
       width: 24px;
       height: 24px;
@@ -321,12 +359,17 @@
       color: rgba(255, 255, 255, 0.75);
       line-height: 1.5;
     }
+    @keyframes floatForm {
+      0%, 100% { transform: translateY(0px); }
+      50%       { transform: translateY(-10px); }
+    }
     /* Early access card */
     .dc-ops-card {
       background: white;
       border-radius: 24px;
       padding: 28px;
       box-shadow: 0 24px 64px rgba(0, 0, 0, 0.3);
+      animation: floatForm 4s ease-in-out infinite;
     }
     .dc-ops-card-title {
       font-family: var(--font-h);
@@ -387,7 +430,7 @@
     .dc-ops-submit {
       width: 100%;
       padding: 14px;
-      background: linear-gradient(135deg, #4251D4, #7C89FF);
+      background: #4251D4;
       color: white;
       border: none;
       border-radius: 12px;
@@ -396,17 +439,24 @@
       font-size: 15px;
       cursor: pointer;
       margin-top: 4px;
-      transition: opacity 0.2s, transform 0.2s;
+      transition: background 0.2s, transform 0.2s;
     }
     .dc-ops-submit:hover {
-      opacity: 0.9;
+      background: #1F2560;
       transform: translateY(-1px);
+    }
+    .dc-ops-field-row {
+      display: flex;
+      gap: 16px;
+    }
+    .dc-ops-field-row .dc-ops-field {
+      flex: 1;
     }
 
     /* WHY DIVELIFE section */
     .dc-why {
-      background: #fff;
-      padding: 48px 64px;
+      background: #ffffff;
+      padding: 48px 64px 100px;
     }
     .dc-why-inner {
       display: grid;
@@ -426,7 +476,19 @@
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: #4251D4;
-      margin-bottom: 16px;
+      margin-bottom: 12px;
+    }
+    .dc-why-rule {
+      width: 120px;
+      height: 2px;
+      background: #4251D4;
+      border-radius: 2px;
+      margin: 0 0 8px 0;
+      animation: rulePulse 2.5s ease-in-out infinite alternate;
+    }
+    @keyframes rulePulse {
+      from { transform: translateX(0);  opacity: 0.6; }
+      to   { transform: translateX(60px); opacity: 1; }
     }
     .dc-why-title {
       font-family: var(--font-h);
@@ -453,11 +515,17 @@
     .dc-screen-mockup {
       margin-top: 32px;
       width: 100%;
-      max-width: 100%;
+      max-width: 680px;
       overflow: hidden;
       border-radius: 12px;
-      box-shadow: 0 24px 64px rgba(31, 37, 96, 0.15);
+      box-shadow: 0 20px 60px rgba(66, 81, 212, 0.15), 0 8px 25px rgba(66, 81, 212, 0.1);
       border: 1px solid #E2E4F0;
+      transform: perspective(1000px) rotateY(-3deg);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+    .dc-screen-mockup:hover {
+      transform: perspective(1000px) rotateY(0deg);
+      box-shadow: 0 30px 80px rgba(66, 81, 212, 0.2);
     }
     .dc-screen-bar {
       height: 36px;
@@ -480,12 +548,16 @@
     }
 
     /* Accordion */
+    .dc-acc-list {
+      align-self: center;
+      padding-top: 60px;
+    }
     .dc-acc-item {
       border-top: 1px solid #E2E4F0;
       padding: 14px 0;
       cursor: pointer;
       position: relative;
-      overflow: hidden;
+      overflow: visible;
     }
     .dc-acc-item:last-child {
       border-bottom: 1px solid #E2E4F0;
@@ -554,11 +626,13 @@
       font-family: var(--font-h);
       font-size: 16px;
       font-weight: 700;
-      color: #0f1230;
-      transition: color 0.3s ease;
+      color: #1F2560;
+      opacity: 0.75;
+      transition: color 0.3s ease, opacity 0.3s ease;
     }
     .dc-acc-item.active .dc-acc-title {
       color: #4251D4;
+      opacity: 1;
     }
     .dc-acc-body {
       font-size: 13px;
@@ -588,7 +662,7 @@
       gap: 20px 32px;
     }
     footer .foot-logo img {
-      height: 28px;
+      height: 38px;
       filter: none;
       display: block;
     }
@@ -632,7 +706,7 @@
     @media (max-width: 960px) {
       .site-nav { padding: 20px 24px; }
       .dc-hero { padding: 110px 24px 64px; }
-      .dc-ops { padding: 48px 24px 0; }
+      .dc-ops { padding: 48px 24px 140px; }
       .dc-ops-inner { grid-template-columns: 1fr; gap: 40px; }
       footer { flex-direction: column; align-items: flex-start; padding: 28px 24px; }
     }
@@ -665,7 +739,7 @@
 
       <p class="dc-hero-sub">Join the world's largest diving community. Manage your center, fill your boats, and grow your business — all in one place.</p>
 
-      <a href="#" class="dc-cta">Get Started — It's Free →</a><!-- REPLACE href -->
+      <a href="#contact-form" class="dc-cta">Get Started — It's Free →</a>
 
       <div class="dc-trust" aria-label="Key benefits">
         <span class="dc-trust-item"><span class="check" aria-hidden="true">✓</span>Free to join</span>
@@ -687,6 +761,7 @@
 
       <!-- Left: sticky -->
       <div class="dc-why-left">
+        <div class="dc-why-rule" aria-hidden="true"></div>
         <p class="dc-why-label">Why Divelife</p>
         <h2 class="dc-why-title">Everything your center<br />needs to <span class="grad">grow.</span></h2>
         <p class="dc-why-sub">Built by people who dive. The platform built for how dive centers actually work.</p>
@@ -707,7 +782,7 @@
 
         <div class="dc-acc-item active" role="button" tabindex="0" aria-expanded="true">
           <div class="dc-acc-bar" aria-hidden="true"></div>
-          <span class="dc-acc-ghost" aria-hidden="true">01</span>
+          <span class="dc-acc-ghost" aria-hidden="true">1</span>
           <div class="dc-acc-header">
             <div class="dc-acc-left">
               <span class="dc-acc-dot" aria-hidden="true"></span>
@@ -719,7 +794,7 @@
 
         <div class="dc-acc-item" role="button" tabindex="0" aria-expanded="false">
           <div class="dc-acc-bar" aria-hidden="true"></div>
-          <span class="dc-acc-ghost" aria-hidden="true">02</span>
+          <span class="dc-acc-ghost" aria-hidden="true">2</span>
           <div class="dc-acc-header">
             <div class="dc-acc-left">
               <span class="dc-acc-dot" aria-hidden="true"></span>
@@ -731,7 +806,7 @@
 
         <div class="dc-acc-item" role="button" tabindex="0" aria-expanded="false">
           <div class="dc-acc-bar" aria-hidden="true"></div>
-          <span class="dc-acc-ghost" aria-hidden="true">03</span>
+          <span class="dc-acc-ghost" aria-hidden="true">3</span>
           <div class="dc-acc-header">
             <div class="dc-acc-left">
               <span class="dc-acc-dot" aria-hidden="true"></span>
@@ -743,7 +818,7 @@
 
         <div class="dc-acc-item" role="button" tabindex="0" aria-expanded="false">
           <div class="dc-acc-bar" aria-hidden="true"></div>
-          <span class="dc-acc-ghost" aria-hidden="true">04</span>
+          <span class="dc-acc-ghost" aria-hidden="true">4</span>
           <div class="dc-acc-header">
             <div class="dc-acc-left">
               <span class="dc-acc-dot" aria-hidden="true"></span>
@@ -755,7 +830,7 @@
 
         <div class="dc-acc-item" role="button" tabindex="0" aria-expanded="false">
           <div class="dc-acc-bar" aria-hidden="true"></div>
-          <span class="dc-acc-ghost" aria-hidden="true">05</span>
+          <span class="dc-acc-ghost" aria-hidden="true">5</span>
           <div class="dc-acc-header">
             <div class="dc-acc-left">
               <span class="dc-acc-dot" aria-hidden="true"></span>
@@ -767,7 +842,7 @@
 
         <div class="dc-acc-item" role="button" tabindex="0" aria-expanded="false">
           <div class="dc-acc-bar" aria-hidden="true"></div>
-          <span class="dc-acc-ghost" aria-hidden="true">06</span>
+          <span class="dc-acc-ghost" aria-hidden="true">6</span>
           <div class="dc-acc-header">
             <div class="dc-acc-left">
               <span class="dc-acc-dot" aria-hidden="true"></span>
@@ -781,19 +856,22 @@
     </div>
   </section>
 
-  <div style="background:#ffffff;margin-bottom:-1px;line-height:0;">
-    <svg viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;height:80px;">
-      <path d="M0,0 C360,80 1080,0 1440,60 L1440,80 L0,80 Z" fill="#0f1230"/>
-    </svg>
-  </div>
-
   <!-- OPERATIONS SECTION -->
-  <section class="dc-ops reveal">
+  <section id="contact-form" class="dc-ops reveal" style="scroll-margin-top:80px;">
+    <!-- Top wave: white section ending in a curve over this gradient background -->
+    <div style="position:absolute;top:0;left:0;right:0;line-height:0;z-index:1;pointer-events:none;">
+      <svg viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;height:80px;">
+        <path d="M0,0 C360,80 1080,0 1440,60 L1440,0 L0,0 Z" fill="#ffffff"/>
+      </svg>
+    </div>
     <div class="dc-ops-inner">
 
       <!-- Left column -->
       <div class="dc-ops-left" style="align-self:start;padding-top:0;">
-        <p class="dc-ops-label">Operations</p>
+        <div class="dc-ops-dots" aria-hidden="true">
+          <span></span><span></span><span></span>
+        </div>
+        <p class="dc-ops-label">Dive in with us</p>
         <h2 class="dc-ops-title">A full OS for your dive center.</h2>
         <ul class="dc-ops-list reveal" role="list">
           <li class="dc-ops-item">
@@ -846,59 +924,62 @@
             <label for="ops-country">COUNTRY</label>
             <input id="ops-country" type="text" placeholder="Thailand" autocomplete="country-name">
           </div>
-          <div class="dc-ops-field">
-            <label for="ops-phone">PHONE</label>
-            <div class="dc-ops-phone-row">
-              <select id="ops-prefix" aria-label="Country code">
-                <option value="+1">🇺🇸 +1</option>
-                <option value="+1ca">🇨🇦 +1</option>
-                <option value="+34">🇪🇸 +34</option>
-                <option value="+44">🇬🇧 +44</option>
-                <option value="+33">🇫🇷 +33</option>
-                <option value="+49">🇩🇪 +49</option>
-                <option value="+39">🇮🇹 +39</option>
-                <option value="+31">🇳🇱 +31</option>
-                <option value="+61">🇦🇺 +61</option>
-                <option value="+64">🇳🇿 +64</option>
-                <option value="+66">🇹🇭 +66</option>
-                <option value="+62">🇮🇩 +62</option>
-                <option value="+60">🇲🇾 +60</option>
-                <option value="+65">🇸🇬 +65</option>
-                <option value="+63">🇵🇭 +63</option>
-                <option value="+81">🇯🇵 +81</option>
-                <option value="+82">🇰🇷 +82</option>
-                <option value="+86">🇨🇳 +86</option>
-                <option value="+91">🇮🇳 +91</option>
-                <option value="+55">🇧🇷 +55</option>
-                <option value="+52">🇲🇽 +52</option>
-                <option value="+54">🇦🇷 +54</option>
-                <option value="+56">🇨🇱 +56</option>
-                <option value="+57">🇨🇴 +57</option>
-                <option value="+20">🇪🇬 +20</option>
-                <option value="+27">🇿🇦 +27</option>
-                <option value="+212">🇲🇦 +212</option>
-                <option value="+971">🇦🇪 +971</option>
-                <option value="+972">🇮🇱 +972</option>
-                <option value="+90">🇹🇷 +90</option>
-              </select>
-              <input id="ops-phone" type="tel" placeholder="234 567 890" autocomplete="tel">
+          <div class="dc-ops-field-row">
+            <div class="dc-ops-field">
+              <label for="ops-phone">PHONE</label>
+              <div class="dc-ops-phone-row">
+                <select id="ops-prefix" aria-label="Country code">
+                  <option value="+1">🇺🇸 +1</option>
+                  <option value="+1ca">🇨🇦 +1</option>
+                  <option value="+34">🇪🇸 +34</option>
+                  <option value="+44">🇬🇧 +44</option>
+                  <option value="+33">🇫🇷 +33</option>
+                  <option value="+49">🇩🇪 +49</option>
+                  <option value="+39">🇮🇹 +39</option>
+                  <option value="+31">🇳🇱 +31</option>
+                  <option value="+61">🇦🇺 +61</option>
+                  <option value="+64">🇳🇿 +64</option>
+                  <option value="+66">🇹🇭 +66</option>
+                  <option value="+62">🇮🇩 +62</option>
+                  <option value="+60">🇲🇾 +60</option>
+                  <option value="+65">🇸🇬 +65</option>
+                  <option value="+63">🇵🇭 +63</option>
+                  <option value="+81">🇯🇵 +81</option>
+                  <option value="+82">🇰🇷 +82</option>
+                  <option value="+86">🇨🇳 +86</option>
+                  <option value="+91">🇮🇳 +91</option>
+                  <option value="+55">🇧🇷 +55</option>
+                  <option value="+52">🇲🇽 +52</option>
+                  <option value="+54">🇦🇷 +54</option>
+                  <option value="+56">🇨🇱 +56</option>
+                  <option value="+57">🇨🇴 +57</option>
+                  <option value="+20">🇪🇬 +20</option>
+                  <option value="+27">🇿🇦 +27</option>
+                  <option value="+212">🇲🇦 +212</option>
+                  <option value="+971">🇦🇪 +971</option>
+                  <option value="+972">🇮🇱 +972</option>
+                  <option value="+90">🇹🇷 +90</option>
+                </select>
+                <input id="ops-phone" type="tel" placeholder="234 567 890" autocomplete="tel">
+              </div>
             </div>
-          </div>
-          <div class="dc-ops-field">
-            <label for="ops-email">EMAIL</label>
-            <input id="ops-email" type="email" placeholder="you@divecenter.com" autocomplete="email">
+            <div class="dc-ops-field">
+              <label for="ops-email">EMAIL</label>
+              <input id="ops-email" type="email" placeholder="you@divecenter.com" autocomplete="email">
+            </div>
           </div>
           <button type="submit" class="dc-ops-submit">Request Early Access →</button>
         </form>
       </div>
 
     </div>
+    <!-- Bottom wave: white footer connecting to this gradient background -->
+    <div style="position:absolute;bottom:-1px;left:0;right:0;line-height:0;z-index:1;pointer-events:none;">
+      <svg viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;height:80px;">
+        <path d="M0,80 C360,20 1080,60 1440,10 L1440,80 L0,80 Z" fill="#ffffff"/>
+      </svg>
+    </div>
   </section>
-  <div style="background:#0f1230;margin-bottom:-1px;line-height:0;">
-    <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;height:60px;">
-      <path d="M0,0 C480,60 960,60 1440,0 L1440,60 L0,60 Z" fill="#ffffff"/>
-    </svg>
-  </div>
 
   <!-- FOOTER -->
   <footer>
