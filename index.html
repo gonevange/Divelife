@@ -738,6 +738,120 @@
     }
     .final-btns { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; position: relative; }
 
+    /* FAQ */
+    .faq-section {
+      background: #f8f9ff;
+      padding: 72px 64px;
+    }
+    .faq-inner {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+    .faq-title {
+      font-family: var(--font-h);
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #1F2560;
+      margin-bottom: 48px;
+    }
+    .faq-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .faq-list--extra { margin-top: 0; }
+    .faq-item {
+      border-bottom: 1px solid #e8eaf5;
+    }
+    .faq-list > .faq-item:first-child,
+    .faq-list--extra > .faq-item:first-child {
+      border-top: 1px solid #e8eaf5;
+    }
+    .faq-list--extra > .faq-item:first-child {
+      border-top: none;
+    }
+    .faq-btn {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      padding: 20px 0;
+      background: none;
+      border: none;
+      cursor: pointer;
+      text-align: left;
+      font-family: var(--font-b);
+      font-size: 1rem;
+      font-weight: 600;
+      color: #1F2560;
+      transition: color 0.2s;
+    }
+    .faq-btn:hover { color: #4251D4; }
+    .faq-icon {
+      flex-shrink: 0;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 1.5px solid #C0C4D8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      line-height: 1;
+      color: #4251D4;
+      transition: transform 0.3s ease, background 0.2s, border-color 0.2s, color 0.2s;
+    }
+    .faq-item.open .faq-icon {
+      transform: rotate(45deg);
+      background: #4251D4;
+      border-color: #4251D4;
+      color: #fff;
+    }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: max-height 0.4s ease, opacity 0.3s ease, padding-bottom 0.3s ease;
+      font-size: 0.95rem;
+      color: #444;
+      line-height: 1.7;
+      padding-bottom: 0;
+    }
+    .faq-item.open .faq-answer {
+      max-height: 300px;
+      opacity: 1;
+      padding-bottom: 20px;
+    }
+    .faq-extra {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.7s ease;
+    }
+    .faq-extra.open {
+      max-height: 4000px;
+    }
+    .faq-more-wrap {
+      margin-top: 32px;
+      text-align: center;
+    }
+    .faq-more-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: transparent;
+      border: 1.5px solid #4251D4;
+      color: #4251D4;
+      padding: 12px 32px;
+      border-radius: 100px;
+      font-family: var(--font-h);
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+    .faq-more-btn:hover { background: #4251D4; color: #fff; }
+
     /* FOOTER WAVE */
     .footer-wave-sep {
       overflow: hidden;
@@ -1025,6 +1139,12 @@
         opacity: 0.5;
         animation: swipePulse 2s ease-in-out infinite;
       }
+
+      /* FAQ mobile */
+      .faq-section { padding: 48px 20px; }
+      .faq-title { font-size: 1.7rem; margin-bottom: 32px; }
+      .faq-btn { font-size: 0.9rem; }
+      .faq-more-btn { width: 100%; justify-content: center; }
     }
   </style>
 </head>
@@ -1215,6 +1335,165 @@
     </div>
   </section>
 
+  <!-- FAQ -->
+  <section class="faq-section reveal">
+    <div class="faq-inner">
+      <h2 class="faq-title">Frequently Asked Questions</h2>
+
+      <ul class="faq-list">
+        <li class="faq-item">
+          <button class="faq-btn" aria-expanded="false">
+            What is DiveLife?
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer">DiveLife is a platform designed to connect divers and dive centers in one place, combining community features, dive logging, dive spot discovery, and activity booking.</div>
+        </li>
+        <li class="faq-item">
+          <button class="faq-btn" aria-expanded="false">
+            Is DiveLife currently in beta?
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer">Yes. DiveLife is currently in beta, which means some features may still be under development or limited.</div>
+        </li>
+        <li class="faq-item">
+          <button class="faq-btn" aria-expanded="false">
+            I can't access the app. What should I do?
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer">Please contact support and include: your device model, your operating system version, the email address you used to access the app, and a screenshot of the issue if possible.</div>
+        </li>
+        <li class="faq-item">
+          <button class="faq-btn" aria-expanded="false">
+            Can I book activities in the app?
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer">Yes, users can book activities directly in the app.</div>
+        </li>
+        <li class="faq-item">
+          <button class="faq-btn" aria-expanded="false">
+            What types of users exist in DiveLife?
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer">DiveLife supports different types of users, including: Divers (standard users), Professional profiles (instructors / divemasters), and Dive centers.</div>
+        </li>
+        <li class="faq-item">
+          <button class="faq-btn" aria-expanded="false">
+            I am an instructor. What can I do in the app?
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer">Professional users such as instructors can manage their profile, validate dives, and participate in activities within the platform.</div>
+        </li>
+      </ul>
+
+      <div class="faq-extra" id="faqExtra" aria-hidden="true">
+        <ul class="faq-list faq-list--extra">
+          <li class="faq-item">
+            <button class="faq-btn" aria-expanded="false">
+              I am a dive center. Can I manage my operations through DiveLife?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer">Yes. Dive centers can manage activities, schedules, instructors, and bookings through the DiveLife admin panel.</div>
+          </li>
+          <li class="faq-item">
+            <button class="faq-btn" aria-expanded="false">
+              How do I report a bug?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer">Please contact support and include: a clear description of the issue, steps to reproduce it, your device and OS version, and screenshots or screen recordings if available.</div>
+          </li>
+          <li class="faq-item">
+            <button class="faq-btn" aria-expanded="false">
+              I have a question about payments or bookings
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer">Please contact support and select "Payments / bookings" in the form so we can assist you more efficiently.</div>
+          </li>
+          <li class="faq-item">
+            <button class="faq-btn" aria-expanded="false">
+              Is it free?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer">Yes. Registration and use of Divelife are free for divers.</div>
+          </li>
+          <li class="faq-item">
+            <button class="faq-btn" aria-expanded="false">
+              Are logged dives valid?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer">Yes. Dives can be validated by affiliated instructors within the platform, regardless of the certifying agency.</div>
+          </li>
+          <li class="faq-item">
+            <button class="faq-btn" aria-expanded="false">
+              Is Divelife a certification agency?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer">No. Divelife is a technology platform that connects divers and dive centers. It does not issue its own certifications.</div>
+          </li>
+          <li class="faq-item">
+            <button class="faq-btn" aria-expanded="false">
+              Can I upload my current certifications?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer">Yes. You can upload your certifications and link them to your personal profile.</div>
+          </li>
+          <li class="faq-item">
+            <button class="faq-btn" aria-expanded="false">
+              Can it connect with SSI?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer">Not yet. We are working on enabling SSI integration soon, so certifications and dive logs can be synced automatically.</div>
+          </li>
+          <li class="faq-item">
+            <button class="faq-btn" aria-expanded="false">
+              Can it connect with dive computers?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer">Coming soon. It will be possible to sync with dive computers to automatically import dive profiles and log technical data directly into the logbook.</div>
+          </li>
+          <li class="faq-item">
+            <button class="faq-btn" aria-expanded="false">
+              How are payments handled?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer">Through Stripe, with a secure payment gateway integrated into the app.</div>
+          </li>
+          <li class="faq-item">
+            <button class="faq-btn" aria-expanded="false">
+              What happens if a dive center cancels an activity?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer">Cancellations are subject to each dive center's specific policy. Divelife acts as a technology intermediary to facilitate the process.</div>
+          </li>
+          <li class="faq-item">
+            <button class="faq-btn" aria-expanded="false">
+              Can I use the app only as a logbook?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer">Yes. You can use Divelife only to log dives, track your stats, and be part of the community, without booking activities.</div>
+          </li>
+          <li class="faq-item">
+            <button class="faq-btn" aria-expanded="false">
+              Do dive centers pay to be on Divelife?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer">Not for being listed. They only pay a commission when they receive bookings through the platform.</div>
+          </li>
+          <li class="faq-item">
+            <button class="faq-btn" aria-expanded="false">
+              How can I contact DiveLife?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer">You can reach us via email at connect@divelifer.com or through the support form on this page.</div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="faq-more-wrap" id="faqMoreWrap">
+        <button class="faq-more-btn" id="faqMoreBtn">See all questions →</button>
+      </div>
+    </div>
+  </section>
+
   <div class="footer-wave-sep" aria-hidden="true">
     <svg viewBox="0 0 1440 120" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="width:100%;height:120px;display:block;">
       <defs>
@@ -1252,6 +1531,35 @@
   </footer>
 
   <script>
+    // FAQ accordion
+    document.querySelectorAll('.faq-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item');
+        const isOpen = item.classList.contains('open');
+        // Close all open items
+        document.querySelectorAll('.faq-item.open').forEach(el => {
+          el.classList.remove('open');
+          el.querySelector('.faq-btn').setAttribute('aria-expanded', 'false');
+        });
+        // Open clicked if it wasn't already open
+        if (!isOpen) {
+          item.classList.add('open');
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+
+    // FAQ "See all" button
+    const faqMoreBtn = document.getElementById('faqMoreBtn');
+    if (faqMoreBtn) {
+      faqMoreBtn.addEventListener('click', () => {
+        const extra = document.getElementById('faqExtra');
+        extra.classList.add('open');
+        extra.setAttribute('aria-hidden', 'false');
+        document.getElementById('faqMoreWrap').style.display = 'none';
+      });
+    }
+
     const els = document.querySelectorAll('.reveal');
     const io = new IntersectionObserver((entries) => {
       entries.forEach((e, i) => {
