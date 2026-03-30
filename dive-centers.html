@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/png" href="LOGO_DIVELIFE_TRANS-01.png">
+  <link rel="icon" type="image/png" href="favicon-32x32.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Divelife for Dive Centers</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -1064,24 +1064,24 @@
       <div class="dc-ops-card">
         <p class="dc-ops-card-title">Want to try Divelife?</p>
         <p class="dc-ops-card-sub">Get early access. We'll set everything up for you.</p>
-        <form class="dc-ops-form" onsubmit="return false;">
+        <form class="dc-ops-form" action="https://formspree.io/f/xnjodbqy" method="POST">
           <div class="dc-ops-field">
             <label for="ops-name">FULL NAME</label>
-            <input id="ops-name" type="text" placeholder="John Smith" autocomplete="name">
+            <input id="ops-name" type="text" name="full_name" placeholder="John Smith" autocomplete="name">
           </div>
           <div class="dc-ops-field">
             <label for="ops-center">DIVE CENTER NAME</label>
-            <input id="ops-center" type="text" placeholder="Ocean Explorers" autocomplete="organization">
+            <input id="ops-center" type="text" name="dive_center_name" placeholder="Ocean Explorers" autocomplete="organization">
           </div>
           <div class="dc-ops-field">
             <label for="ops-country">COUNTRY</label>
-            <input id="ops-country" type="text" placeholder="Thailand" autocomplete="country-name">
+            <input id="ops-country" type="text" name="country" placeholder="Thailand" autocomplete="country-name">
           </div>
           <div class="dc-ops-field-row">
             <div class="dc-ops-field">
               <label for="ops-phone">PHONE</label>
               <div class="dc-ops-phone-row">
-                <select id="ops-prefix" aria-label="Country code">
+                <select id="ops-prefix" name="phone_prefix" aria-label="Country code">
                   <option value="+1">🇺🇸 +1</option>
                   <option value="+1ca">🇨🇦 +1</option>
                   <option value="+34">🇪🇸 +34</option>
@@ -1113,12 +1113,12 @@
                   <option value="+972">🇮🇱 +972</option>
                   <option value="+90">🇹🇷 +90</option>
                 </select>
-                <input id="ops-phone" type="tel" placeholder="234 567 890" autocomplete="tel">
+                <input id="ops-phone" type="tel" name="phone_number" placeholder="234 567 890" autocomplete="tel">
               </div>
             </div>
             <div class="dc-ops-field">
               <label for="ops-email">EMAIL</label>
-              <input id="ops-email" type="email" placeholder="you@divecenter.com" autocomplete="email">
+              <input id="ops-email" type="email" name="email" placeholder="you@divecenter.com" autocomplete="email">
             </div>
           </div>
           <button type="submit" class="dc-ops-submit">Request Early Access →</button>
