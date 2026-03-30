@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — Divelife</title>
+  <link rel="icon" type="image/png" href="logo_blue.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --penn-blue: #1F2560;
+      --byzantine: #4251D4;
+      --tropical-indigo: #7C89FF;
+      --white: #ffffff;
+      --light-bg: #f8f9ff;
+      --text-body: #444;
+      --text-muted: #888;
+      --border: #e8eaf5;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { font-size: 90%; scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--white);
+      color: var(--text-body);
+      line-height: 1.7;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 48px;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .nav-logo img { height: 36px; }
+
+    .nav-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--penn-blue);
+      text-decoration: none;
+      padding: 10px 22px;
+      border: 1.5px solid var(--border);
+      border-radius: 100px;
+      transition: all 0.25s ease;
+    }
+
+    .nav-back:hover {
+      background: var(--penn-blue);
+      color: white;
+      border-color: var(--penn-blue);
+    }
+
+    /* HERO STRIP */
+    .hero-strip {
+      background: linear-gradient(135deg, var(--penn-blue) 0%, #2d3a8c 60%, var(--byzantine) 100%);
+      padding: 80px 48px 60px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-strip::before {
+      content: '';
+      position: absolute;
+      top: -80px;
+      right: -80px;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(124,137,255,0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-strip::after {
+      content: '';
+      position: absolute;
+      bottom: -40px;
+      left: 10%;
+      width: 250px;
+      height: 250px;
+      background: radial-gradient(circle, rgba(66,81,212,0.2) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--tropical-indigo);
+      margin-bottom: 20px;
+    }
+
+    .hero-label::before {
+      content: '';
+      display: block;
+      width: 6px;
+      height: 6px;
+      background: var(--tropical-indigo);
+      border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.8); }
+    }
+
+    .hero-strip h1 {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 3rem;
+      font-weight: 800;
+      color: white;
+      line-height: 1.1;
+      max-width: 600px;
+    }
+
+    .hero-strip h1 span {
+      color: var(--tropical-indigo);
+    }
+
+    .hero-meta {
+      margin-top: 20px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.5);
+      font-weight: 300;
+    }
+
+    /* WAVE */
+    .wave {
+      display: block;
+      width: 100%;
+      margin-bottom: -2px;
+    }
+
+    /* CONTENT */
+    .content-wrap {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 60px 48px 100px;
+    }
+
+    /* SECTION */
+    .policy-section {
+      margin-bottom: 52px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .policy-section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .section-number {
+      display: inline-block;
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--byzantine);
+      margin-bottom: 10px;
+    }
+
+    .policy-section h2 {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--penn-blue);
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1.5px solid var(--border);
+    }
+
+    .policy-section h3 {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--penn-blue);
+      margin: 20px 0 8px;
+    }
+
+    .policy-section p {
+      font-size: 0.95rem;
+      color: var(--text-body);
+      margin-bottom: 12px;
+    }
+
+    .policy-section ul {
+      list-style: none;
+      padding: 0;
+      margin: 8px 0 16px;
+    }
+
+    .policy-section ul li {
+      font-size: 0.95rem;
+      color: var(--text-body);
+      padding: 6px 0 6px 20px;
+      position: relative;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .policy-section ul li:last-child {
+      border-bottom: none;
+    }
+
+    .policy-section ul li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 6px;
+      height: 6px;
+      background: var(--byzantine);
+      border-radius: 50%;
+      opacity: 0.6;
+    }
+
+    /* HIGHLIGHT BOX */
+    .highlight-box {
+      background: var(--light-bg);
+      border-left: 3px solid var(--byzantine);
+      border-radius: 0 12px 12px 0;
+      padding: 20px 24px;
+      margin: 16px 0;
+    }
+
+    .highlight-box p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: var(--penn-blue);
+    }
+
+    .highlight-box strong {
+      font-weight: 600;
+    }
+
+    /* EMAIL LINK */
+    a.email-link {
+      color: var(--byzantine);
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s;
+    }
+
+    a.email-link:hover {
+      border-color: var(--byzantine);
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--penn-blue);
+      padding: 40px 48px;
+      text-align: center;
+    }
+
+    footer img { height: 32px; opacity: 0.8; margin-bottom: 12px; }
+
+    footer p {
+      font-size: 13px;
+      color: rgba(255,255,255,0.4);
+    }
+
+    /* MOBILE */
+    @media (max-width: 768px) {
+      nav { padding: 14px 20px; }
+      .hero-strip { padding: 60px 24px 40px; }
+      .hero-strip h1 { font-size: 2rem; }
+      .content-wrap { padding: 40px 20px 80px; }
+      footer { padding: 32px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-logo">
+      <img src="logo_blue.png" alt="Divelife" />
+    </a>
+    <a href="index.html" class="nav-back">← Back to Divelife</a>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero-strip">
+    <div class="hero-label">Legal</div>
+    <h1>Privacy <span>Policy.</span></h1>
+    <p class="hero-meta">Last updated: March 2026 &nbsp;·&nbsp; Divelife S.L.</p>
+  </div>
+
+  <svg class="wave" viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0,60 C360,0 1080,60 1440,20 L1440,0 L0,0 Z" fill="#1F2560"/>
+  </svg>
+
+  <!-- CONTENT -->
+  <div class="content-wrap">
+
+    <div class="policy-section">
+      <div class="highlight-box">
+        <p>This Privacy Policy describes how <strong>Divelife S.L.</strong> collects, uses, and protects your personal data in accordance with the GDPR (EU) 2016/679 and Organic Law 3/2018 (LOPDGDD).</p>
+      </div>
+    </div>
+
+    <div class="policy-section">
+      <span class="section-number">01</span>
+      <h2>Data Controller</h2>
+      <p><strong>Divelife S.L.</strong><br/>
+      CIF: B75915629<br/>
+      AV Altos Hornos de Vizcaya Num 33, 48901 Barakaldo, Vizcaya, Spain</p>
+      <p>Contact: <a href="mailto:Connect@divelifer.com" class="email-link">Connect@divelifer.com</a></p>
+      <p>Represented by: Javier Prats Nebot — ID: 48244907S</p>
+    </div>
+
+    <div class="policy-section">
+      <span class="section-number">02</span>
+      <h2>Personal Data We Collect</h2>
+      <h3>Registration Data</h3>
+      <ul>
+        <li>Full name</li>
+        <li>Email address</li>
+        <li>Password</li>
+        <li>Country of residence</li>
+      </ul>
+      <h3>Profile Data</h3>
+      <ul>
+        <li>Profile picture</li>
+        <li>Diving certifications</li>
+        <li>Experience and level information</li>
+        <li>Logbook (dive records)</li>
+        <li>Personal statistics</li>
+        <li>Ratings and reviews</li>
+      </ul>
+      <h3>User-Generated Content</h3>
+      <ul>
+        <li>Photos and videos</li>
+        <li>Comments, posts and reviews</li>
+      </ul>
+      <h3>Booking Data</h3>
+      <ul>
+        <li>Booked activities and booking history</li>
+        <li>Check-in forms</li>
+        <li>Insurance information (if provided)</li>
+        <li>Payment information processed by external providers</li>
+      </ul>
+      <h3>Technical and Usage Data</h3>
+      <ul>
+        <li>IP address and device type</li>
+        <li>Operating system and technical identifiers</li>
+        <li>In-app activity logs</li>
+      </ul>
+    </div>
+
+    <div class="policy-section">
+      <span class="section-number">03</span>
+      <h2>Device Permissions</h2>
+      <p>The app may request the following permissions, only activated when you voluntarily use the corresponding feature:</p>
+      <h3>Camera</h3>
+      <ul>
+        <li>Upload photos or videos of dives</li>
+        <li>Scan or photograph certifications</li>
+      </ul>
+      <h3>Gallery / Storage</h3>
+      <ul>
+        <li>Select existing images or videos</li>
+        <li>Save user-generated content</li>
+      </ul>
+      <h3>Notifications</h3>
+      <ul>
+        <li>Booking confirmations and reminders</li>
+        <li>Dive validations and group messages</li>
+        <li>Relevant operational communications</li>
+      </ul>
+      <p>You can manage these permissions at any time through your device settings.</p>
+    </div>
+
+    <div class="policy-section">
+      <span class="section-number">04</span>
+      <h2>Purpose of Processing</h2>
+      <ul>
+        <li>Create and manage user accounts</li>
+        <li>Enable dive logging (logbook)</li>
+        <li>Manage bookings and group activities</li>
+        <li>Facilitate communication between users, instructors, and dive centers</li>
+        <li>Enable ratings and validations</li>
+        <li>Send activity-related notifications</li>
+        <li>Comply with legal obligations</li>
+        <li>Improve platform security and performance</li>
+      </ul>
+    </div>
+
+    <div class="policy-section">
+      <span class="section-number">05</span>
+      <h2>Legal Basis</h2>
+      <ul>
+        <li>Performance of the user agreement</li>
+        <li>User consent (e.g., uploading content or receiving notifications)</li>
+        <li>Legitimate interest in ensuring platform security and improvement</li>
+        <li>Compliance with legal obligations</li>
+      </ul>
+    </div>
+
+    <div class="policy-section">
+      <span class="section-number">06</span>
+      <h2>Data Retention</h2>
+      <ul>
+        <li>While the user account remains active</li>
+        <li>For the legally required retention periods</li>
+        <li>Until the user requests account deletion, unless legal obligations require retention</li>
+      </ul>
+    </div>
+
+    <div class="policy-section">
+      <span class="section-number">07</span>
+      <h2>Data Sharing</h2>
+      <ul>
+        <li>Payment service providers (e.g., Stripe)</li>
+        <li>Hosting and infrastructure providers</li>
+        <li>Dive centers when users make bookings</li>
+        <li>Public authorities when legally required</li>
+      </ul>
+      <div class="highlight-box">
+        <p><strong>Divelife does not sell personal data to third parties.</strong></p>
+      </div>
+    </div>
+
+    <div class="policy-section">
+      <span class="section-number">08</span>
+      <h2>International Data Transfers</h2>
+      <p>If providers located outside the European Economic Area are used, appropriate safeguards will be implemented in accordance with GDPR, such as Standard Contractual Clauses or other valid legal mechanisms.</p>
+    </div>
+
+    <div class="policy-section">
+      <span class="section-number">09</span>
+      <h2>User Rights</h2>
+      <ul>
+        <li>Right of access</li>
+        <li>Right to rectification</li>
+        <li>Right to erasure</li>
+        <li>Right to restriction of processing</li>
+        <li>Right to object</li>
+        <li>Right to data portability</li>
+      </ul>
+      <p>To exercise these rights, contact: <a href="mailto:Connect@divelifer.com" class="email-link">Connect@divelifer.com</a></p>
+      <p>You also have the right to lodge a complaint with the Spanish Data Protection Authority (AEPD).</p>
+    </div>
+
+    <div class="policy-section">
+      <span class="section-number">10</span>
+      <h2>Security</h2>
+      <p>Divelife applies reasonable technical and organizational measures to protect personal data against unauthorized access, loss, alteration, or improper disclosure.</p>
+    </div>
+
+    <div class="policy-section">
+      <span class="section-number">11</span>
+      <h2>Account Deletion</h2>
+      <p>You may request account deletion by sending an email to <a href="mailto:Connect@divelifer.com" class="email-link">Connect@divelifer.com</a>.</p>
+      <p>Deletion will result in the removal of personal data, except where retention is required by law.</p>
+    </div>
+
+    <div class="policy-section">
+      <span class="section-number">12</span>
+      <h2>Changes to This Policy</h2>
+      <p>Divelife may update this Privacy Policy when necessary for legal, technical, or business reasons. Users will be informed of significant changes through the app or other appropriate means.</p>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <img src="logo_divelife.png" alt="Divelife" />
+    <p>© 2026 Divelife S.L. — All rights reserved</p>
+  </footer>
+
+  <script>
+    // Reveal on scroll
+    const sections = document.querySelectorAll('.policy-section');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 60);
+        }
+      });
+    }, { threshold: 0.1 });
+    sections.forEach(s => observer.observe(s));
+  </script>
+
+</body>
+</html>
