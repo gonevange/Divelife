@@ -1122,6 +1122,19 @@
         padding: 24px;
         opacity: 1 !important;
         width: auto;
+        transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+      }
+      .feat-bento-card.active {
+        background: linear-gradient(135deg, #1F2560, #4251D4) !important;
+        border-color: #1F2560 !important;
+        color: white !important;
+      }
+      .feat-bento-card.active .feat-bento-card-title { color: white !important; }
+      .feat-bento-card.active .feat-bento-card-desc { color: rgba(255,255,255,0.65) !important; }
+      .feat-bento-card.active .feat-bento-icon { color: white !important; }
+      .feat-bento-card:not(.active) {
+        background: white !important;
+        color: #0f1230 !important;
       }
 
       /* Swipe hint */
@@ -1531,7 +1544,7 @@
   </footer>
 
   <script>
-    // Mobile carousel → iPhone image sync
+    // Mobile carousel → iPhone image sync + active card state
     function initMobileCarousel() {
       if (window.innerWidth > 768) return;
       const carousel = document.querySelector('.feat-bento');
@@ -1542,7 +1555,23 @@
       if (carousel._mobileScrollBound) return;
       carousel._mobileScrollBound = true;
 
-      carousel.addEventListener('scroll', () => {
+      function activateMobileCard(closest) {
+        const cards = carousel.querySelectorAll('[data-img]');
+        cards.forEach(c => c.classList.remove('active'));
+        closest.classList.add('active');
+
+        const newSrc = closest.getAttribute('data-img');
+        if (phone.getAttribute('src') !== newSrc) {
+          phone.style.transition = 'opacity 0.3s ease';
+          phone.style.opacity = '0';
+          setTimeout(() => {
+            phone.src = newSrc;
+            phone.style.opacity = '1';
+          }, 150);
+        }
+      }
+
+      function getClosestCard() {
         const cards = carousel.querySelectorAll('[data-img]');
         const carouselLeft = carousel.scrollLeft;
         let closest = null;
@@ -1551,18 +1580,22 @@
           const dist = Math.abs(card.offsetLeft - carouselLeft);
           if (dist < closestDist) { closestDist = dist; closest = card; }
         });
-        if (closest) {
-          const newSrc = closest.getAttribute('data-img');
-          if (phone.getAttribute('src') !== newSrc) {
-            phone.style.transition = 'opacity 0.3s ease';
-            phone.style.opacity = '0';
-            setTimeout(() => {
-              phone.src = newSrc;
-              phone.style.opacity = '1';
-            }, 150);
-          }
-        }
+        return closest;
+      }
+
+      // Suppress click-based activation on mobile
+      carousel.querySelectorAll('[data-img]').forEach(card => {
+        card.addEventListener('click', e => e.stopImmediatePropagation(), true);
       });
+
+      carousel.addEventListener('scroll', () => {
+        const closest = getClosestCard();
+        if (closest) activateMobileCard(closest);
+      });
+
+      // Activate first card immediately on init
+      const first = getClosestCard();
+      if (first) activateMobileCard(first);
     }
     document.addEventListener('DOMContentLoaded', initMobileCarousel);
     window.addEventListener('resize', initMobileCarousel);
