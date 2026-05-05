@@ -1,0 +1,1 @@
+[{"relation": ["delegate_permission/common.handle_all_urls"],"target": {"namespace": "android_app","package_name": "com.divelife.app","sha256_cert_fingerprints": ["E9:26:69:14:DB:5F:1A:31:43:88:61:0E:BD:AD:E8:44:FA:0E:FE:BD:20:45:8C:EA:D0:F8:A9:F1:73:E4:3F:A9"]}}]
